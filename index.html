@@ -4,1460 +4,281 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Surprise 💜</title>
-
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html,body{
-  width:100%;
-  min-height:100%;
-}
-
-body{
-  font-family:Arial,sans-serif;
-  background:#eee0ff;
-  color:#5d4770;
-  overflow-x:hidden;
-}
-
-.screen{
-  display:none;
-  min-height:100vh;
-  width:100%;
-  padding:28px 16px;
-  position:relative;
-  overflow:hidden;
-}
-
-.screen.active{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-}
-
-#lockScreen{
-  background:repeating-linear-gradient(
-    0deg,
-    #d9b6ff 0px,
-    #d9b6ff 45px,
-    #f8dc68 45px,
-    #f8dc68 90px
-  );
-}
-
-#questionScreen,
-#birthdayScreen,
-#memoriesScreen,
-#letterScreen,
-#stickersScreen,
-#videoScreen,
-#hugScreen{
-  background:#eee0ff;
-}
-
-.content,
-.lock{
-  position:relative;
-  z-index:3;
-  width:100%;
-  max-width:600px;
-  text-align:center;
-}
-
-h1,h2{
-  color:#8056a3;
-  margin-bottom:18px;
-}
-
-h1{
-  font-size:clamp(30px,8vw,50px);
-}
-
-h2{
-  font-size:clamp(25px,7vw,40px);
-}
-
-p{
-  font-size:18px;
-  line-height:1.7;
-}
-
-/* FALLING LOVE */
-
-.love-rain{
-  position:fixed;
-  inset:0;
-  pointer-events:none;
-  overflow:hidden;
-  z-index:1;
-}
-
-.love{
-  position:absolute;
-  top:-50px;
-  animation:fall linear forwards;
-}
-
-@keyframes fall{
-  0%{
-    transform:translateY(-50px) rotate(0);
-    opacity:0;
-  }
-
-  10%{
-    opacity:1;
-  }
-
-  100%{
-    transform:translateY(110vh) rotate(360deg);
-    opacity:0;
-  }
-}
-
-/* LOCK */
-
-.lock{
-  max-width:390px;
-  background:white;
-  border-radius:28px;
-  padding:28px 18px;
-  box-shadow:0 15px 40px rgba(0,0,0,.12);
-}
-
-.first{
-  font-size:70px;
-  animation:bounce 2s infinite;
-}
-
-.dec{
-  letter-spacing:8px;
-}
-
-@keyframes bounce{
-  0%,100%{
-    transform:translateY(0);
-  }
-
-  50%{
-    transform:translateY(-8px) rotate(4deg);
-  }
-}
-
-.pass{
-  height:55px;
-  margin:18px 0;
-  background:#f1e5ff;
-  border:2px solid #dcc3f2;
-  border-radius:15px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  letter-spacing:12px;
-  font-size:25px;
-  color:#8056a3;
-}
-
-.keys{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:10px;
-}
-
-.key,
-.btn{
-  border:0;
-  border-radius:16px;
-  cursor:pointer;
-}
-
-.key{
-  height:58px;
-  background:#fff;
-  color:#79529a;
-  font-size:21px;
-  font-weight:bold;
-  box-shadow:0 5px 12px rgba(0,0,0,.12);
-}
-
-.key:active,
-.btn:active{
-  transform:scale(.96);
-}
-
-.key.ok{
-  background:#f5d965;
-}
-
-.btn{
-  padding:15px 28px;
-  margin:8px;
-  background:#b986d8;
-  color:white;
-  font-size:18px;
-  font-weight:bold;
-  border-radius:30px;
-}
-
-.no{
-  background:#d9c3e8;
-  color:#765b87;
-}
-
-/* TEDDY */
-
-.teddy{
-  width:230px;
-  height:260px;
-  position:relative;
-  margin:0 auto 20px;
-}
-
-.ear{
-  position:absolute;
-  width:78px;
-  height:78px;
-  background:#b97848;
-  border-radius:50%;
-  top:8px;
-  z-index:1;
-}
-
-.ear:after{
-  content:'';
-  position:absolute;
-  inset:15px;
-  background:#e7ae8a;
-  border-radius:50%;
-}
-
-.ear.l{
-  left:22px;
-}
-
-.ear.r{
-  right:22px;
-}
-
-.body{
-  position:absolute;
-  width:125px;
-  height:95px;
-  background:#c98a58;
-  border-radius:60px 60px 35px 35px;
-  left:52px;
-  bottom:0;
-}
-
-.belly{
-  position:absolute;
-  width:70px;
-  height:55px;
-  background:#e7b98e;
-  border-radius:50%;
-  left:27px;
-  top:25px;
-}
-
-.head{
-  position:absolute;
-  width:190px;
-  height:175px;
-  background:#c98a58;
-  border-radius:50%;
-  left:20px;
-  top:32px;
-  z-index:2;
-}
-
-.muzzle{
-  position:absolute;
-  width:100px;
-  height:75px;
-  background:#e9bb91;
-  border-radius:50%;
-  left:45px;
-  top:78px;
-}
-
-.eye{
-  position:absolute;
-  width:18px;
-  height:24px;
-  background:#33231f;
-  border-radius:50%;
-  top:62px;
-  z-index:4;
-}
-
-.eye.l{
-  left:48px;
-}
-
-.eye.r{
-  right:48px;
-}
-
-.nose{
-  position:absolute;
-  width:27px;
-  height:21px;
-  background:#4b2924;
-  border-radius:50%;
-  left:81px;
-  top:96px;
-}
-
-.mouth{
-  position:absolute;
-  left:80px;
-  top:112px;
-  width:30px;
-  height:15px;
-  border-bottom:3px solid #61352c;
-  border-radius:50%;
-}
-
-.blush{
-  position:absolute;
-  width:28px;
-  height:13px;
-  background:#e78d9a;
-  border-radius:50%;
-  top:105px;
-}
-
-.blush.l{
-  left:28px;
-}
-
-.blush.r{
-  right:28px;
-}
-
-.bow{
-  position:absolute;
-  z-index:6;
-  top:0;
-  left:96px;
-  font-size:35px;
-}
-
-.heart{
-  position:absolute;
-  z-index:7;
-  font-size:25px;
-}
-
-.h1{
-  left:0;
-  top:55px;
-}
-
-.h2{
-  right:0;
-  top:100px;
-}
-
-.h3{
-  left:10px;
-  bottom:25px;
-}
-
-/* BIRTHDAY */
-
-.birthday-cake{
-  font-size:100px;
-  margin:10px;
-}
-
-.birthday{
-  background:white;
-  padding:28px 20px;
-  border-radius:25px;
-  box-shadow:0 10px 25px rgba(0,0,0,.12);
-  margin-bottom:18px;
-}
-
-.birthday h1{
-  line-height:1.3;
-}
-
-.birthday p{
-  font-size:20px;
-}
-
-/* MEMORIES */
-
-.slider{
-  width:100%;
-  max-width:500px;
-  position:relative;
-  margin:20px auto;
-}
-
-.window{
-  overflow:hidden;
-  border-radius:22px;
-  background:white;
-  box-shadow:0 10px 30px rgba(0,0,0,.12);
-  touch-action:pan-y;
-}
-
-.track{
-  display:flex;
-  transition:transform .35s ease;
-}
-
-.slide{
-  min-width:100%;
-  height:420px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:white;
-}
-
-.slide img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  display:block;
-  background:white;
-}
-
-.arrow{
-  position:absolute;
-  z-index:4;
-  top:50%;
-  transform:translateY(-50%);
-  width:45px;
-  height:45px;
-  border:0;
-  border-radius:50%;
-  background:white;
-  color:#79529a;
-  font-size:30px;
-  cursor:pointer;
-  box-shadow:0 3px 10px rgba(0,0,0,.15);
-}
-
-.arrow.left{
-  left:8px;
-}
-
-.arrow.right{
-  right:8px;
-}
-
-.dots{
-  display:flex;
-  justify-content:center;
-  gap:8px;
-  margin:12px;
-}
-
-.dot{
-  width:10px;
-  height:10px;
-  border:0;
-  border-radius:50%;
-  background:#cdb5dd;
-  cursor:pointer;
-  padding:0;
-}
-
-.dot.on{
-  background:#8559a6;
-  transform:scale(1.2);
-}
-
-/* LETTER */
-
-.letter{
-  background:white;
-  padding:28px 20px;
-  border-radius:12px;
-  text-align:left;
-  line-height:1.9;
-  box-shadow:0 12px 30px rgba(0,0,0,.12);
-  max-height:65vh;
-  overflow:auto;
-}
-
-.letter p{
-  font-size:16px;
-  margin-bottom:12px;
-}
-
-/* STICKERS */
-
-.sticker-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-  max-width:450px;
-  margin:20px auto;
-}
-
-.sticker{
-  background:white;
-  border:0;
-  border-radius:22px;
-  padding:24px;
-  font-size:50px;
-  box-shadow:0 8px 20px rgba(0,0,0,.12);
-  cursor:pointer;
-}
-
-/* VIDEO */
-
-.video{
-  width:100%;
-  max-width:500px;
-  background:#000;
-  border-radius:20px;
-  overflow:hidden;
-  margin:20px auto;
-}
-
-.video video{
-  width:100%;
-  display:block;
-}
-
-/* HUG */
-
-.hug{
-  width:100%;
-  max-width:450px;
-  max-height:65vh;
-  object-fit:contain;
-  border-radius:20px;
-  background:white;
-}
-
-/* MOBILE */
-
-@media(max-width:600px){
-
-  .slide{
-    height:420px;
-  }
-
-  .letter{
-    max-height:62vh;
-  }
-
-  .birthday h1{
-    font-size:31px;
-  }
-}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;min-height:100%}
+body{font-family:Arial,sans-serif;background:#eee0ff;color:#5d4770;overflow-x:hidden}
+.screen{display:none;min-height:100vh;width:100%;padding:28px 16px;position:relative;overflow:hidden}
+.screen.active{display:flex;align-items:center;justify-content:center}
+#lockScreen{background:repeating-linear-gradient(0deg,#d9b6ff 0,#d9b6ff 45px,#f8dc68 45px,#f8dc68 90px)}
+#questionScreen,#birthdayScreen,#memoriesScreen,#letterScreen,#stickersScreen,#videoScreen,#hugScreen{background:#eee0ff}
+.content,.lock{position:relative;z-index:3;width:100%;max-width:600px;text-align:center}
+h1,h2{color:#8056a3;margin-bottom:18px}
+h1{font-size:clamp(30px,8vw,50px)}
+h2{font-size:clamp(25px,7vw,40px)}
+p{font-size:18px;line-height:1.7}
+.love-rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:1}
+.love{position:absolute;top:-50px;animation:fall linear forwards}
+@keyframes fall{0%{transform:translateY(-50px) rotate(0);opacity:0}10%{opacity:1}100%{transform:translateY(110vh) rotate(360deg);opacity:0}}
+.lock{max-width:390px;background:white;border-radius:28px;padding:28px 18px;box-shadow:0 15px 40px rgba(0,0,0,.12)}
+.first{font-size:70px;animation:bounce 2s infinite}.dec{letter-spacing:8px}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px) rotate(4deg)}}
+.pass{height:55px;margin:18px 0;background:#f1e5ff;border:2px solid #dcc3f2;border-radius:15px;display:flex;align-items:center;justify-content:center;letter-spacing:12px;font-size:25px;color:#8056a3}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.key,.btn{border:0;border-radius:16px;cursor:pointer}.key{height:58px;background:#fff;color:#79529a;font-size:21px;font-weight:bold;box-shadow:0 5px 12px rgba(0,0,0,.12)}
+.key:active,.btn:active{transform:scale(.96)}.key.ok{background:#f5d965}
+.btn{padding:15px 28px;margin:8px;background:#b986d8;color:white;font-size:18px;font-weight:bold;border-radius:30px}
+.no{background:#d9c3e8;color:#765b87}
+.teddy{width:230px;height:260px;position:relative;margin:0 auto 20px}
+.ear{position:absolute;width:78px;height:78px;background:#b97848;border-radius:50%;top:8px;z-index:1}.ear:after{content:'';position:absolute;inset:15px;background:#e7ae8a;border-radius:50%}.ear.l{left:22px}.ear.r{right:22px}
+.body{position:absolute;width:125px;height:95px;background:#c98a58;border-radius:60px 60px 35px 35px;left:52px;bottom:0}.belly{position:absolute;width:70px;height:55px;background:#e7b98e;border-radius:50%;left:27px;top:25px}
+.head{position:absolute;width:190px;height:175px;background:#c98a58;border-radius:50%;left:20px;top:32px;z-index:2}.muzzle{position:absolute;width:100px;height:75px;background:#e9bb91;border-radius:50%;left:45px;top:78px}
+.eye{position:absolute;width:18px;height:24px;background:#33231f;border-radius:50%;top:62px;z-index:4}.eye.l{left:48px}.eye.r{right:48px}
+.nose{position:absolute;width:27px;height:21px;background:#4b2924;border-radius:50%;left:81px;top:96px}.mouth{position:absolute;left:80px;top:112px;width:30px;height:15px;border-bottom:3px solid #61352c;border-radius:50%}
+.blush{position:absolute;width:28px;height:13px;background:#e78d9a;border-radius:50%;top:105px}.blush.l{left:28px}.blush.r{right:28px}
+.bow{position:absolute;z-index:6;top:0;left:96px;font-size:35px}.heart{position:absolute;z-index:7;font-size:25px}.h1{left:0;top:55px}.h2{right:0;top:100px}.h3{left:10px;bottom:25px}
+.birthday-cake{font-size:100px;margin:10px}.birthday{background:white;padding:28px 20px;border-radius:25px;box-shadow:0 10px 25px rgba(0,0,0,.12);margin-bottom:18px}.birthday h1{line-height:1.3}.birthday p{font-size:20px}
+.slider{width:100%;max-width:500px;position:relative;margin:20px auto}.window{overflow:hidden;border-radius:22px;background:white;box-shadow:0 10px 30px rgba(0,0,0,.12);touch-action:pan-y}.track{display:flex;transition:transform .35s ease}
+.slide{min-width:100%;height:420px;display:flex;align-items:center;justify-content:center;background:white}.slide img{width:100%;height:100%;object-fit:contain;display:block;background:white}
+.arrow{position:absolute;z-index:4;top:50%;transform:translateY(-50%);width:45px;height:45px;border:0;border-radius:50%;background:white;color:#79529a;font-size:30px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,.15)}.arrow.left{left:8px}.arrow.right{right:8px}
+.dots{display:flex;justify-content:center;gap:8px;margin:12px}.dot{width:10px;height:10px;border:0;border-radius:50%;background:#cdb5dd;cursor:pointer;padding:0}.dot.on{background:#8559a6;transform:scale(1.2)}
+.letter{background:white;padding:28px 20px;border-radius:12px;text-align:left;line-height:1.9;box-shadow:0 12px 30px rgba(0,0,0,.12);max-height:65vh;overflow:auto}.letter p{font-size:16px;margin-bottom:12px}
+.sticker-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;max-width:450px;margin:20px auto}.sticker{background:white;border:0;border-radius:22px;padding:24px;font-size:50px;box-shadow:0 8px 20px rgba(0,0,0,.12);cursor:pointer}
+.video{width:100%;max-width:500px;background:#000;border-radius:20px;overflow:hidden;margin:20px auto}.video video{width:100%;display:block}
+.hug{width:100%;max-width:450px;max-height:65vh;object-fit:contain;border-radius:20px;background:white}
+@media(max-width:600px){.slide{height:420px}.letter{max-height:62vh}.birthday h1{font-size:31px}}
 </style>
 </head>
-
 <body>
 
-<!-- PASSWORD -->
+<audio id="backgroundMusic" src="song.mp3" loop preload="auto"></audio>
 
 <section id="lockScreen" class="screen active">
-
-  <div class="love-rain"></div>
-
-  <div class="lock">
-
-    <div class="dec">💕 ✨ 💕</div>
-
-    <div class="first">🧸💜</div>
-
-    <h1>A Little Surprise 💜</h1>
-
-    <p>Enter the secret password...</p>
-
-    <div id="display" class="pass">····</div>
-
-    <div class="keys">
-
-      <button class="key" onclick="pressKey('1')">1</button>
-      <button class="key" onclick="pressKey('2')">2</button>
-      <button class="key" onclick="pressKey('3')">3</button>
-
-      <button class="key" onclick="pressKey('4')">4</button>
-      <button class="key" onclick="pressKey('5')">5</button>
-      <button class="key" onclick="pressKey('6')">6</button>
-
-      <button class="key" onclick="pressKey('7')">7</button>
-      <button class="key" onclick="pressKey('8')">8</button>
-      <button class="key" onclick="pressKey('9')">9</button>
-
-      <button class="key" onclick="clearPass()">⌫</button>
-      <button class="key" onclick="pressKey('0')">0</button>
-      <button class="key ok" onclick="checkPassword()">✓</button>
-
-    </div>
-
-  </div>
-
+<div class="love-rain"></div><div class="lock">
+<div class="dec">💕 ✨ 💕</div><div class="first">🧸💜</div>
+<h1>A Little Surprise 💜</h1><p>Enter the secret password...</p>
+<div id="display" class="pass">····</div>
+<div class="keys">
+<button class="key" onclick="pressKey('1')">1</button><button class="key" onclick="pressKey('2')">2</button><button class="key" onclick="pressKey('3')">3</button>
+<button class="key" onclick="pressKey('4')">4</button><button class="key" onclick="pressKey('5')">5</button><button class="key" onclick="pressKey('6')">6</button>
+<button class="key" onclick="pressKey('7')">7</button><button class="key" onclick="pressKey('8')">8</button><button class="key" onclick="pressKey('9')">9</button>
+<button class="key" onclick="clearPass()">⌫</button><button class="key" onclick="pressKey('0')">0</button><button class="key ok" onclick="checkPassword()">✓</button>
+</div></div>
 </section>
 
-
-<!-- QUESTION -->
-
-<section id="questionScreen" class="screen">
-
-  <div class="love-rain"></div>
-
-  <div class="content">
-
-    <div class="teddy">
-
-      <span class="heart h1">💜</span>
-      <span class="heart h2">💕</span>
-      <span class="heart h3">✨</span>
-
-      <i class="ear l"></i>
-      <i class="ear r"></i>
-
-      <div class="body">
-        <div class="belly"></div>
-      </div>
-
-      <div class="head">
-
-        <div class="muzzle"></div>
-
-        <i class="eye l"></i>
-        <i class="eye r"></i>
-
-        <i class="blush l"></i>
-        <i class="blush r"></i>
-
-        <i class="nose"></i>
-        <i class="mouth"></i>
-
-      </div>
-
-      <div class="bow">🎀</div>
-
-    </div>
-
-    <h2>
-      Will you accept this birthday surprise? 🥺💜
-    </h2>
-
-    <button class="btn" onclick="answerYes()">
-      YES 💜
-    </button>
-
-    <button class="btn no" onclick="answerNo()">
-      NO
-    </button>
-
-    <p id="noMsg"></p>
-
-  </div>
-
-</section>
-
-
-<!-- BIRTHDAY -->
-
-<section id="birthdayScreen" class="screen">
-
-  <div class="love-rain"></div>
-
-  <div class="content">
-
-    <div class="birthday-cake">🎂</div>
-
-    <div class="birthday">
-
-      <h1>
-        Happy birthday to the handsome mannn💗🫶🏻
-      </h1>
-
-      <p>
-        The surprise is waiting for you
-      </p>
-
-    </div>
-
-    <button class="btn"
-      onclick="showScreen('memoriesScreen')">
-      Our Memories 📸
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- MEMORIES -->
-
-<section id="memoriesScreen" class="screen">
-
-  <div class="love-rain"></div>
-
-  <div class="content">
-
-    <h2>Our Memories 📸</h2>
-
-    <p>Swipe left or right 💜</p>
-
-    <div class="slider">
-
-      <button
-        class="arrow left"
-        onclick="previousSlide()">
-        ‹
-      </button>
-
-      <div
-        class="window"
-        id="sliderWindow">
-
-        <div
-          class="track"
-          id="sliderTrack">
-
-          <!-- PHOTO 1 -->
-          <div class="slide">
-            <img
-              src="photo-1.jpg"
-              alt="Memory 1">
-          </div>
-
-          <!-- PHOTO 2 -->
-          <div class="slide">
-            <img
-              src="photo-2.jpg"
-              alt="Memory 2">
-          </div>
-
-          <!-- PHOTO 3 -->
-          <div class="slide">
-            <img
-              src="photo-3.jpg"
-              alt="Memory 3">
-          </div>
-
-          <!-- PHOTO 4 -->
-          <div class="slide">
-            <img
-              src="photo-4.jpg"
-              alt="Memory 4">
-          </div>
-
-        </div>
-
-      </div>
-
-      <button
-        class="arrow right"
-        onclick="nextSlide()">
-        ›
-      </button>
-
-      <div
-        class="dots"
-        id="sliderDots">
-      </div>
-
-    </div>
-
-    <button
-      class="btn"
-      onclick="showScreen('letterScreen')">
-
-      Read My Letter 💌
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- LETTER -->
-
-<section id="letterScreen" class="screen">
-
-  <div class="love-rain"></div>
-
-  <div class="content">
-
-    <h2>A Letter For You 💌</h2>
-
-    <div class="letter">
-
-      <p>
-        Happyy Birthdayyyyyy Husabandddd💋💗
-      </p>
-
-      <p>
-        I know this was simple but I want to make your day somewhat special 😊
-      </p>
-
-      <p>
-        This is for youuuu✨🫶🏻
-      </p>
-
-      <p>
-        So Ekkada nudi start chedham antavv🤔
-        sarle aantha alochinchadam dhenikii...
-      </p>
-
-      <p>
-        Frst nudi chepali anteyy ninnu asla ela namano
-        ela premaalo padano telidhu kani ahh namakani nijam ani prove chesav🫰🏻
-        ni lyff lo nen entha important oo nak telidhu kani
-        na lyf lo nv entha important aneydhi matalo chepalenu ❤️
-      </p>
-
-      <p>
-        nen okatey namutha natho avru ekkuva rojulu undaru ani
-        kani nv dhani abadam ...
-        nen unta ani prove chesavv💫
-        nv na kopani na edupu ni na badha ni na santhoshani
-        anitilo thodu unnav 🫀
-        anni dheggara undi barinchavv🙃
-        nannu ni aanthaga avru chusukoleru emo 😭
-      </p>
-
-      <p>
-        i am so Lucky to you have you in my life ✨
-      </p>
-
-      <p>
-        I know konni sarulu chirak pedtha ibandhi pedthaa
-        but na prathi situation lo nv matrame undagalav
-        aandhuke em jarigina malli ni dheggarike ostha👀
-      </p>
-
-      <p>
-        I am so sorryyy I hurt you sometimes 🥲
-        but I promise you I will never leave my hand
-        in any worse situation 🫳🏻
-      </p>
-
-      <p>
-        I lovee youuu so muchhh 💗💋
-      </p>
-
-      <p>
-        Nv 100 years natho happy ga undali ani korukuntunna 🧿🫂
-      </p>
-
-    </div>
-
-    <button
-      class="btn"
-      onclick="showScreen('stickersScreen')">
-
-      One More Thing ✨
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- STICKERS -->
-
-<section id="stickersScreen" class="screen">
-
-  <div class="love-rain"></div>
-
-  <div class="content">
-
-    <h2>Little Things For You 💜</h2>
-
-    <div class="sticker-grid">
-
-      <button
-        class="sticker"
-        onclick="stickerClick('camera')">
-        📸
-      </button>
-
-      <button
-        class="sticker"
-        onclick="stickerClick('letter')">
-        💌
-      </button>
-
-      <button
-        class="sticker"
-        onclick="stickerClick('phone')">
-        📱
-      </button>
-
-      <button
-        class="sticker"
-        onclick="stickerClick('flowers')">
-        🌷
-      </button>
-
-    </div>
-
-    <p id="stickerMessage"></p>
-
-    <button
-      class="btn"
-      onclick="showScreen('videoScreen')">
-
-      Watch This 🎬
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- VIDEO -->
-
-<section id="videoScreen" class="screen">
-
-  <div class="love-rain"></div>
-
-  <div class="content">
-
-    <h2>A Little Video For You 🎬</h2>
-
-    <div class="video">
-
-      <video
-        controls
-        playsinline
-        preload="metadata">
-
-        <source
-          src="birthday-video.mp4"
-          type="video/mp4">
-
-        Your browser does not support this video.
-
-      </video>
-
-    </div>
-
-    <button
-      class="btn"
-      onclick="showScreen('hugScreen')">
-
-      Final Surprise 🥺💜
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- HUG -->
-
-<section id="hugScreen" class="screen">
-
-  <div class="love-rain"></div>
-
-  <div class="content">
-
-    <h1>Come Here 🥺💜</h1>
-
-    <img
-      class="hug"
-      src="69837.jpg"
-      alt="Virtual hug">
-
-    <h2>
-      Sending you a big virtual hug 🤗💜
-    </h2>
-
-    <button
-      class="btn"
-      onclick="replaySurprise()">
-
-      Replay From Beginning 🔄
-
-    </button>
-
-  </div>
-
-</section>
-
+<section id="questionScreen" class="screen"><div class="love-rain"></div><div class="content">
+<div class="teddy"><span class="heart h1">💜</span><span class="heart h2">💕</span><span class="heart h3">✨</span>
+<i class="ear l"></i><i class="ear r"></i><div class="body"><div class="belly"></div></div>
+<div class="head"><div class="muzzle"></div><i class="eye l"></i><i class="eye r"></i><i class="blush l"></i><i class="blush r"></i><i class="nose"></i><i class="mouth"></i></div><div class="bow">🎀</div></div>
+<h2>Will you accept this birthday surprise? 🥺💜</h2>
+<button class="btn" onclick="answerYes()">YES 💜</button><button class="btn no" onclick="answerNo()">NO</button><p id="noMsg"></p>
+</div></section>
+
+<section id="birthdayScreen" class="screen"><div class="love-rain"></div><div class="content">
+<div class="birthday-cake">🎂</div><div class="birthday"><h1>Happy birthday to the handsome mannn💗🫶🏻</h1><p>The surprise is waiting for you</p></div>
+<button class="btn" onclick="showScreen('memoriesScreen')">Our Memories 📸</button>
+</div></section>
+
+<section id="memoriesScreen" class="screen"><div class="love-rain"></div><div class="content">
+<h2>Our Memories 📸</h2><p>Swipe left or right 💜</p>
+<div class="slider"><button class="arrow left" onclick="previousSlide()">‹</button>
+<div class="window" id="sliderWindow"><div class="track" id="sliderTrack">
+<div class="slide"><img src="photo-1.jpg" alt="Memory 1"></div><div class="slide"><img src="photo-2.jpg" alt="Memory 2"></div>
+<div class="slide"><img src="photo-3.jpg" alt="Memory 3"></div><div class="slide"><img src="photo-4.jpg" alt="Memory 4"></div>
+</div></div><button class="arrow right" onclick="nextSlide()">›</button><div class="dots" id="sliderDots"></div></div>
+<button class="btn" onclick="showScreen('letterScreen')">Read My Letter 💌</button>
+</div></section>
+
+<section id="letterScreen" class="screen"><div class="love-rain"></div><div class="content">
+<h2>A Letter For You 💌</h2><div class="letter">
+<p>Happyy Birthdayyyyyy Husabandddd💋💗</p>
+<p>I know this was simple but I want to make your day somewhat special 😊</p>
+<p>This is for youuuu✨🫶🏻</p>
+<p>So Ekkada nudi start chedham antavv🤔 sarle aantha alochinchadam dhenikii...</p>
+<p>Frst nudi chepali anteyy ninnu asla ela namano ela premaalo padano telidhu kani ahh namakani nijam ani prove chesav🫰🏻 ni lyff lo nen entha important oo nak telidhu kani na lyf lo nv entha important aneydhi matalo chepalenu ❤️</p>
+<p>nen okatey namutha natho avru ekkuva rojulu undaru ani kani nv dhani abadam ... nen unta ani prove chesavv💫 nv na kopani na edupu ni na badha ni na santhoshani anitilo thodu unnav 🫀 anni dheggara undi barinchavv🙃 nannu ni aanthaga avru chusukoleru emo 😭</p>
+<p>i am so Lucky to you have you in my life ✨</p>
+<p>I know konni sarulu chirak pedtha ibandhi pedthaa but na prathi situation lo nv matrame undagalav aandhuke em jarigina malli ni dheggarike ostha👀</p>
+<p>I am so sorryyy I hurt you sometimes 🥲 but I promise you I will never leave my hand in any worse situation 🫳🏻</p>
+<p>I lovee youuu so muchhh 💗💋</p><p>Nv 100 years natho happy ga undali ani korukuntunna 🧿🫂</p>
+</div><button class="btn" onclick="showScreen('stickersScreen')">One More Thing ✨</button>
+</div></section>
+
+<section id="stickersScreen" class="screen"><div class="love-rain"></div><div class="content">
+<h2>Little Things For You 💜</h2><div class="sticker-grid">
+<button class="sticker" onclick="stickerClick('camera')">📸</button><button class="sticker" onclick="stickerClick('letter')">💌</button>
+<button class="sticker" onclick="stickerClick('phone')">📱</button><button class="sticker" onclick="stickerClick('flowers')">🌷</button>
+</div><p id="stickerMessage"></p><button class="btn" onclick="showScreen('videoScreen')">Watch This 🎬</button>
+</div></section>
+
+<section id="videoScreen" class="screen"><div class="love-rain"></div><div class="content">
+<h2>A Little Video For You 🎬</h2><div class="video"><video controls playsinline preload="metadata"><source src="birthday-video.mp4" type="video/mp4">Your browser does not support this video.</video></div>
+<button class="btn" onclick="showScreen('hugScreen')">Final Surprise 🥺💜</button>
+</div></section>
+
+<section id="hugScreen" class="screen"><div class="love-rain"></div><div class="content">
+<h1>Come Here 🥺💜</h1><img class="hug" src="69837.jpg" alt="Virtual hug"><h2>Sending you a big virtual hug 🤗💜</h2>
+<button class="btn" onclick="replaySurprise()">Replay From Beginning 🔄</button>
+</div></section>
 
 <script>
-
 "use strict";
 
-/* PASSWORD */
+const backgroundMusic=document.getElementById("backgroundMusic");
+backgroundMusic.volume=0.35;
 
-let enteredPassword = "";
+function startBackgroundMusic(){
+backgroundMusic.play().catch(function(){});
+}
 
-const correctPassword = "0410";
-
-const display =
-  document.getElementById("display");
-
-const noMsg =
-  document.getElementById("noMsg");
-
-const stickerMessage =
-  document.getElementById("stickerMessage");
-
+let enteredPassword="";
+const correctPassword="0410";
+const display=document.getElementById("display");
+const noMsg=document.getElementById("noMsg");
+const stickerMessage=document.getElementById("stickerMessage");
 
 function updateDisplay(){
-
-  let result = "";
-
-  for(let i = 0; i < 4; i++){
-
-    if(i < enteredPassword.length){
-      result += "•";
-    }else{
-      result += "·";
-    }
-
-  }
-
-  display.textContent = result;
-
+let result="";
+for(let i=0;i<4;i++){result+=i<enteredPassword.length?"•":"·";}
+display.textContent=result;
 }
-
 
 function pressKey(number){
-
-  if(enteredPassword.length >= 4){
-    return;
-  }
-
-  enteredPassword += number;
-
-  updateDisplay();
-
+if(enteredPassword.length>=4)return;
+enteredPassword+=number;
+updateDisplay();
 }
-
 
 function clearPass(){
-
-  enteredPassword = "";
-
-  updateDisplay();
-
+enteredPassword="";
+updateDisplay();
 }
-
 
 function checkPassword(){
-
-  if(enteredPassword === correctPassword){
-
-    showScreen("questionScreen");
-
-  }else{
-
-    alert("Wrong password 💜 Try again!");
-
-    clearPass();
-
-  }
-
+if(enteredPassword===correctPassword){
+startBackgroundMusic();
+showScreen("questionScreen");
+}else{
+alert("Wrong password 💜 Try again!");
+clearPass();
 }
-
-
-/* SCREEN CHANGE */
+}
 
 function showScreen(screenId){
-
-  document
-    .querySelectorAll(".screen")
-    .forEach(function(screen){
-
-      screen.classList.remove("active");
-
-    });
-
-
-  const selected =
-    document.getElementById(screenId);
-
-
-  if(selected){
-
-    selected.classList.add("active");
-
-  }
-
-
-  window.scrollTo(0,0);
-
+document.querySelectorAll(".screen").forEach(function(screen){screen.classList.remove("active");});
+const selected=document.getElementById(screenId);
+if(selected)selected.classList.add("active");
+window.scrollTo(0,0);
 }
 
+function answerYes(){showScreen("birthdayScreen");}
+function answerNo(){noMsg.textContent="That's okay 🥺💜 I'll stay right here.";}
 
-/* YES / NO */
-
-function answerYes(){
-
-  showScreen("birthdayScreen");
-
-}
-
-
-function answerNo(){
-
-  noMsg.textContent =
-    "That's okay 🥺💜 I'll stay right here.";
-
-}
-
-
-/* LOVE RAIN */
-
-const symbols = [
-  "💜",
-  "💗",
-  "💕",
-  "💖",
-  "💘",
-  "✨",
-  "🌸",
-  "🌷",
-  "🦋"
-];
-
+const symbols=["💜","💗","💕","💖","💘","✨","🌸","🌷","🦋"];
 
 function createLove(){
-
-  const activeScreen =
-    document.querySelector(".screen.active");
-
-  if(!activeScreen){
-    return;
-  }
-
-  const container =
-    activeScreen.querySelector(".love-rain");
-
-  if(!container){
-    return;
-  }
-
-  const love =
-    document.createElement("span");
-
-  love.className = "love";
-
-  love.textContent =
-    symbols[
-      Math.floor(
-        Math.random() * symbols.length
-      )
-    ];
-
-  love.style.left =
-    Math.random() * 100 + "%";
-
-  love.style.fontSize =
-    (14 + Math.random() * 18) + "px";
-
-  const duration =
-    4 + Math.random() * 4;
-
-  love.style.animationDuration =
-    duration + "s";
-
-  container.appendChild(love);
-
-  setTimeout(function(){
-
-    love.remove();
-
-  }, duration * 1000);
-
+const activeScreen=document.querySelector(".screen.active");
+if(!activeScreen)return;
+const container=activeScreen.querySelector(".love-rain");
+if(!container)return;
+const love=document.createElement("span");
+love.className="love";
+love.textContent=symbols[Math.floor(Math.random()*symbols.length)];
+love.style.left=Math.random()*100+"%";
+love.style.fontSize=(14+Math.random()*18)+"px";
+const duration=4+Math.random()*4;
+love.style.animationDuration=duration+"s";
+container.appendChild(love);
+setTimeout(function(){love.remove();},duration*1000);
 }
-
-
 setInterval(createLove,350);
 
-
-/* PHOTO SLIDER */
-
-let currentSlide = 0;
-
-const sliderTrack =
-  document.getElementById("sliderTrack");
-
-const sliderWindow =
-  document.getElementById("sliderWindow");
-
-const slides =
-  document.querySelectorAll(".slide");
-
-const sliderDots =
-  document.getElementById("sliderDots");
-
+let currentSlide=0;
+const sliderTrack=document.getElementById("sliderTrack");
+const sliderWindow=document.getElementById("sliderWindow");
+const slides=document.querySelectorAll(".slide");
+const sliderDots=document.getElementById("sliderDots");
 
 function createDots(){
-
-  sliderDots.innerHTML = "";
-
-  slides.forEach(function(_,index){
-
-    const dot =
-      document.createElement("button");
-
-    dot.className = "dot";
-
-    if(index === 0){
-
-      dot.classList.add("on");
-
-    }
-
-    dot.addEventListener(
-      "click",
-      function(){
-
-        currentSlide = index;
-
-        updateSlider();
-
-      }
-    );
-
-    sliderDots.appendChild(dot);
-
-  });
-
+sliderDots.innerHTML="";
+slides.forEach(function(_,index){
+const dot=document.createElement("button");
+dot.className="dot";
+if(index===0)dot.classList.add("on");
+dot.addEventListener("click",function(){currentSlide=index;updateSlider();});
+sliderDots.appendChild(dot);
+});
 }
-
 
 function updateSlider(){
-
-  sliderTrack.style.transform =
-    "translateX(-" +
-    (currentSlide * 100) +
-    "%)";
-
-
-  document
-    .querySelectorAll(".dot")
-    .forEach(function(dot,index){
-
-      dot.classList.toggle(
-        "on",
-        index === currentSlide
-      );
-
-    });
-
+sliderTrack.style.transform="translateX(-"+(currentSlide*100)+"%)";
+document.querySelectorAll(".dot").forEach(function(dot,index){
+dot.classList.toggle("on",index===currentSlide);
+});
 }
-
 
 function nextSlide(){
-
-  currentSlide++;
-
-  if(currentSlide >= slides.length){
-
-    currentSlide = 0;
-
-  }
-
-  updateSlider();
-
+currentSlide++;
+if(currentSlide>=slides.length)currentSlide=0;
+updateSlider();
 }
-
 
 function previousSlide(){
-
-  currentSlide--;
-
-  if(currentSlide < 0){
-
-    currentSlide =
-      slides.length - 1;
-
-  }
-
-  updateSlider();
-
+currentSlide--;
+if(currentSlide<0)currentSlide=slides.length-1;
+updateSlider();
 }
 
+let touchStartX=0;
+sliderWindow.addEventListener("touchstart",function(event){
+touchStartX=event.changedTouches[0].screenX;
+},{passive:true});
 
-/* SWIPE */
-
-let touchStartX = 0;
-
-
-sliderWindow.addEventListener(
-  "touchstart",
-  function(event){
-
-    touchStartX =
-      event.changedTouches[0].screenX;
-
-  },
-  {passive:true}
-);
-
-
-sliderWindow.addEventListener(
-  "touchend",
-  function(event){
-
-    const touchEndX =
-      event.changedTouches[0].screenX;
-
-    const difference =
-      touchStartX - touchEndX;
-
-
-    if(Math.abs(difference) < 50){
-
-      return;
-
-    }
-
-
-    if(difference > 0){
-
-      nextSlide();
-
-    }else{
-
-      previousSlide();
-
-    }
-
-  },
-  {passive:true}
-);
-
-
-/* STICKERS */
+sliderWindow.addEventListener("touchend",function(event){
+const touchEndX=event.changedTouches[0].screenX;
+const difference=touchStartX-touchEndX;
+if(Math.abs(difference)<50)return;
+if(difference>0)nextSlide();else previousSlide();
+},{passive:true});
 
 function stickerClick(type){
-
-  const messages = {
-
-    camera:
-      "Every moment is worth remembering 📸💜",
-
-    letter:
-      "A little love letter just for you 💌",
-
-    phone:
-      "Pick up the phone... there is love waiting 📱💜",
-
-    flowers:
-      "These flowers are for you 🌷💜"
-
-  };
-
-
-  stickerMessage.textContent =
-    messages[type] || "💜";
-
+const messages={
+camera:"Every moment is worth remembering 📸💜",
+letter:"A little love letter just for you 💌",
+phone:"Pick up the phone... there is love waiting 📱💜",
+flowers:"These flowers are for you 🌷💜"
+};
+stickerMessage.textContent=messages[type]||"💜";
 }
-
-
-/* REPLAY */
 
 function replaySurprise(){
-
-  enteredPassword = "";
-
-  currentSlide = 0;
-
-  updateDisplay();
-
-  updateSlider();
-
-  noMsg.textContent = "";
-
-  stickerMessage.textContent = "";
-
-  showScreen("lockScreen");
-
+enteredPassword="";
+currentSlide=0;
+updateDisplay();
+updateSlider();
+noMsg.textContent="";
+stickerMessage.textContent="";
+startBackgroundMusic();
+showScreen("lockScreen");
 }
 
-
-/* KEYBOARD */
-
-document.addEventListener(
-  "keydown",
-  function(event){
-
-    if(
-      event.key >= "0" &&
-      event.key <= "9"
-    ){
-
-      pressKey(event.key);
-
-    }
-
-
-    if(event.key === "Enter"){
-
-      checkPassword();
-
-    }
-
-
-    if(event.key === "Backspace"){
-
-      enteredPassword =
-        enteredPassword.slice(0,-1);
-
-      updateDisplay();
-
-    }
-
-
-    const memories =
-      document.getElementById(
-        "memoriesScreen"
-      );
-
-
-    if(
-      memories.classList.contains("active")
-    ){
-
-      if(event.key === "ArrowRight"){
-
-        nextSlide();
-
-      }
-
-
-      if(event.key === "ArrowLeft"){
-
-        previousSlide();
-
-      }
-
-    }
-
-  }
-);
-
-
-/* START */
+document.addEventListener("keydown",function(event){
+if(event.key>="0"&&event.key<="9")pressKey(event.key);
+if(event.key==="Enter")checkPassword();
+if(event.key==="Backspace"){
+enteredPassword=enteredPassword.slice(0,-1);
+updateDisplay();
+}
+const memories=document.getElementById("memoriesScreen");
+if(memories.classList.contains("active")){
+if(event.key==="ArrowRight")nextSlide();
+if(event.key==="ArrowLeft")previousSlide();
+}
+});
 
 updateDisplay();
-
 createDots();
-
 updateSlider();
-
 </script>
-
 </body>
-  </html>
+</html>
