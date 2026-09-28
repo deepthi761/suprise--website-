@@ -1,8 +1,6 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Birthday Surprise 💜</title>
@@ -25,10 +23,6 @@ body {
   overflow-x: hidden;
 }
 
-/* =========================
-   MAIN BROWSER
-========================= */
-
 .browser {
   width: min(430px, 100%);
   min-height: 100vh;
@@ -38,10 +32,6 @@ body {
   overflow: hidden;
   box-shadow: 0 0 30px rgba(70, 40, 100, .2);
 }
-
-/* =========================
-   BROWSER HEADER
-========================= */
 
 .browser-top {
   background: #111;
@@ -78,10 +68,6 @@ body {
   font-size: 14px;
 }
 
-/* =========================
-   SCREENS
-========================= */
-
 .screen {
   display: none;
   min-height: calc(100vh - 95px);
@@ -97,8 +83,7 @@ body {
   align-items: center;
 }
 
-h1,
-h2 {
+h1, h2 {
   color: #d94c91;
 }
 
@@ -149,9 +134,7 @@ p {
   transform: scale(.96);
 }
 
-/* =====================================================
-   FIRST PAGE — LAVENDER / YELLOW STRIPED DESIGN
-===================================================== */
+/* FIRST PAGE */
 
 .first-page {
   min-height: calc(100vh - 95px);
@@ -167,8 +150,6 @@ p {
       #fff6bd 130px
     );
 }
-
-/* soft dreamy overlay */
 
 .first-page::after {
   content: "";
@@ -189,8 +170,6 @@ p {
 
   pointer-events: none;
 }
-
-/* UNLOCK */
 
 .unlock-title {
   position: absolute;
@@ -227,20 +206,14 @@ p {
   margin-top: -4px;
 }
 
-/* PHOTO FRAME */
-
 .photo-frame {
   position: absolute;
   left: 18px;
   top: 225px;
-
   width: 185px;
   height: 230px;
-
   padding: 11px;
-
   background: #8b68cf;
-
   border-radius: 45% 45% 48% 48%;
 
   box-shadow:
@@ -269,23 +242,16 @@ p {
   border-radius: 40%;
 }
 
-/* PASSCODE CARD */
-
 .passcode-card {
   position: absolute;
   top: 55px;
   right: 16px;
-
   width: 185px;
   min-height: 410px;
-
   padding: 24px 14px;
-
   background: rgba(255,249,190,.94);
-
   border: 5px solid #7455bb;
   border-radius: 35px;
-
   z-index: 5;
 
   box-shadow:
@@ -309,37 +275,28 @@ p {
   margin-bottom: 15px;
 }
 
-/* PASSWORD DISPLAY */
-
 .passcode-display {
   position: relative;
   z-index: 2;
-
   display: flex;
   justify-content: center;
   gap: 7px;
-
   margin-bottom: 18px;
 }
 
 .passcode-display span {
   width: 27px;
   height: 27px;
-
   background: #7355bd;
   border-radius: 4px;
-
   color: white;
   font-size: 18px;
   line-height: 27px;
 }
 
-/* FIRST KEYPAD */
-
 .first-keypad {
   position: relative;
   z-index: 2;
-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 9px;
@@ -347,25 +304,18 @@ p {
 
 .first-keypad button {
   height: 43px;
-
   border: none;
   border-radius: 50%;
-
   background: rgba(255,255,255,.7);
-
   color: #7057b4;
-
   font-size: 17px;
   font-weight: bold;
-
   cursor: pointer;
 }
 
 .first-keypad button:active {
   transform: scale(.9);
 }
-
-/* ERROR */
 
 .error {
   position: relative;
@@ -375,21 +325,14 @@ p {
   margin-top: 12px;
 }
 
-/* CUTE DECORATION */
-
 .cute-sticker {
   position: absolute;
   left: 52%;
   bottom: 55px;
-
   transform: translateX(-50%) rotate(-4deg);
-
   font-size: 115px;
-
   z-index: 3;
-
-  filter:
-    drop-shadow(3px 5px 3px rgba(60,40,80,.2));
+  filter: drop-shadow(3px 5px 3px rgba(60,40,80,.2));
 }
 
 .cute-sticker span {
@@ -399,9 +342,7 @@ p {
   font-size: 30px;
 }
 
-/* =========================
-   QUESTION
-========================= */
+/* TEDDY */
 
 .teddy {
   width: 145px;
@@ -489,9 +430,7 @@ p {
   font-size: 14px;
 }
 
-/* =========================
-   BIRTHDAY
-========================= */
+/* BIRTHDAY */
 
 .birthday-emoji {
   font-size: 65px;
@@ -502,9 +441,7 @@ p {
   margin: 15px;
 }
 
-/* =========================
-   MEMORIES
-========================= */
+/* MEMORIES */
 
 .photo-grid {
   width: 100%;
@@ -517,16 +454,12 @@ p {
 .photo-box {
   aspect-ratio: 1;
   overflow: hidden;
-
   background: #fff0f7;
-
   border: 3px dashed #df8fb4;
   border-radius: 17px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   color: #c56c91;
   font-size: 12px;
 }
@@ -537,21 +470,15 @@ p {
   object-fit: cover;
 }
 
-/* =========================
-   LETTER
-========================= */
+/* LETTER */
 
 .letter {
   width: 100%;
   padding: 24px 20px;
-
   background: #fffaf0;
-
   border: 1px solid #ead7ad;
   border-radius: 17px;
-
   text-align: left;
-
   box-shadow: 0 5px 18px rgba(0,0,0,.08);
 }
 
@@ -565,9 +492,7 @@ p {
   font-weight: bold;
 }
 
-/* =========================
-   STICKERS
-========================= */
+/* STICKERS */
 
 .sticker-grid {
   width: 100%;
@@ -579,16 +504,11 @@ p {
 
 .sticker {
   min-height: 110px;
-
   border: none;
   border-radius: 18px;
-
   background: #fff0f5;
-
   font-size: 45px;
-
   cursor: pointer;
-
   box-shadow: 0 4px 12px rgba(0,0,0,.07);
 }
 
@@ -605,9 +525,7 @@ p {
   color: #d83f79;
 }
 
-/* =========================
-   VIDEO
-========================= */
+/* VIDEO */
 
 .video-wrap {
   width: 100%;
@@ -623,9 +541,7 @@ p {
   background: #111;
 }
 
-/* =========================
-   HUG
-========================= */
+/* HUG */
 
 .hug-gif {
   width: min(310px, 90%);
@@ -641,36 +557,7 @@ p {
   font-size: 16px;
 }
 
-/* =========================
-   FLOATING HEARTS
-========================= */
-
-.floating-heart {
-  position: fixed;
-  pointer-events: none;
-  font-size: 22px;
-  z-index: 100;
-  animation: floatHeart 3s linear forwards;
-}
-
-@keyframes floatHeart {
-  from {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-
-  to {
-    opacity: 0;
-    transform: translateY(-180px) scale(1.5);
-  }
-}
-
-/* =========================
-   MOBILE
-========================= */
-
 @media (max-width: 380px) {
-
   .unlock-title span {
     font-size: 43px;
   }
@@ -701,8 +588,6 @@ p {
 
 <div class="browser">
 
-  <!-- BROWSER TOP -->
-
   <div class="browser-top">
     <div class="dots">
       <div class="dot"></div>
@@ -719,10 +604,7 @@ p {
     IMAGINE someone sent you this on your birthday at 12am 😭💌
   </div>
 
-
-  <!-- ==================================================
-       FIRST PAGE
-  =================================================== -->
+  <!-- FIRST PAGE -->
 
   <section id="passcode" class="screen active first-page">
 
@@ -732,28 +614,18 @@ p {
       <b>you</b>
     </div>
 
-
-    <!-- YOUR PHOTO -->
-
     <div class="photo-frame">
-
       <img
         src="IMG_20260927_174544.jpg"
         alt="Birthday photo"
+        onerror="this.style.display='none'"
       >
-
     </div>
-
-
-    <!-- DECORATION -->
 
     <div class="cute-sticker">
       🐱
       <span>✨</span>
     </div>
-
-
-    <!-- PASSCODE -->
 
     <div class="passcode-card">
 
@@ -768,21 +640,21 @@ p {
 
       <div class="first-keypad">
 
-        <button onclick="pressKey('1')">1</button>
-        <button onclick="pressKey('2')">2</button>
-        <button onclick="pressKey('3')">3</button>
+        <button type="button" onclick="pressKey('1')">1</button>
+        <button type="button" onclick="pressKey('2')">2</button>
+        <button type="button" onclick="pressKey('3')">3</button>
 
-        <button onclick="pressKey('4')">4</button>
-        <button onclick="pressKey('5')">5</button>
-        <button onclick="pressKey('6')">6</button>
+        <button type="button" onclick="pressKey('4')">4</button>
+        <button type="button" onclick="pressKey('5')">5</button>
+        <button type="button" onclick="pressKey('6')">6</button>
 
-        <button onclick="pressKey('7')">7</button>
-        <button onclick="pressKey('8')">8</button>
-        <button onclick="pressKey('9')">9</button>
+        <button type="button" onclick="pressKey('7')">7</button>
+        <button type="button" onclick="pressKey('8')">8</button>
+        <button type="button" onclick="pressKey('9')">9</button>
 
-        <button onclick="clearPassword()">⌫</button>
-        <button onclick="pressKey('0')">0</button>
-        <button onclick="checkPassword()">✓</button>
+        <button type="button" onclick="clearPassword()">⌫</button>
+        <button type="button" onclick="pressKey('0')">0</button>
+        <button type="button" onclick="checkPassword()">✓</button>
 
       </div>
 
@@ -792,10 +664,7 @@ p {
 
   </section>
 
-
-  <!-- ==================================================
-       QUESTION
-  =================================================== -->
+  <!-- QUESTION -->
 
   <section id="question" class="screen">
 
@@ -805,13 +674,10 @@ p {
       <div class="ear right"></div>
 
       <div class="teddy-head">
-
         <div class="eye left"></div>
         <div class="eye right"></div>
-
         <div class="nose"></div>
         <div class="mouth"></div>
-
       </div>
 
     </div>
@@ -820,11 +686,11 @@ p {
 
     <div class="question-buttons">
 
-      <button class="yes-btn" onclick="answerYes()">
+      <button class="yes-btn" type="button" onclick="answerYes()">
         YES 🥹
       </button>
 
-      <button class="no-btn" onclick="answerNo()">
+      <button class="no-btn" type="button" onclick="answerNo()">
         NO
       </button>
 
@@ -834,147 +700,77 @@ p {
 
   </section>
 
-
-  <!-- ==================================================
-       BIRTHDAY
-  =================================================== -->
+  <!-- BIRTHDAY -->
 
   <section id="birthday" class="screen">
 
-    <div class="birthday-emoji">
-      🎉
-    </div>
+    <div class="birthday-emoji">🎉</div>
 
-    <h1>
-      HAPPY BIRTHDAY! 💜
-    </h1>
+    <h1>HAPPY BIRTHDAY! 💜</h1>
 
-    <div class="cake">
-      🎂
-    </div>
+    <div class="cake">🎂</div>
 
-    <p>
-      Today is your special day! 🥹
-    </p>
+    <p>Today is your special day! 🥹</p>
 
-    <p>
-      I made this little surprise just for you.
-    </p>
+    <p>I made this little surprise just for you.</p>
 
-    <button
-      class="main-btn"
-      onclick="showScreen('memories')"
-    >
+    <button class="main-btn" type="button" onclick="showScreen('memories')">
       Open your memories 📸
     </button>
 
   </section>
 
-
-  <!-- ==================================================
-       MEMORIES
-  =================================================== -->
+  <!-- MEMORIES -->
 
   <section id="memories" class="screen">
 
-    <h2>
-      Our Memories 📸
-    </h2>
+    <h2>Our Memories 📸</h2>
 
-    <p>
-      Little moments that deserve to be remembered 💜
-    </p>
+    <p>Little moments that deserve to be remembered 💜</p>
 
     <div class="photo-grid">
 
-
       <div class="photo-box">
-
-        <img
-          src="IMG_20260927_174544.jpg"
-          alt="Memory 1"
-        >
-
+        <img src="IMG_20260927_174544.jpg" alt="Memory 1">
       </div>
 
-
       <div class="photo-box">
-
-        <img
-          src="IMG_20260927_174548.jpg"
-          alt="Memory 2"
-        >
-
+        <img src="IMG_20260927_174548.jpg" alt="Memory 2">
       </div>
 
-
       <div class="photo-box">
-
-        <img
-          src="file_00000000d9d48211994fcfef595e467e.png"
-          alt="Memory 3"
-        >
-
+        <img src="file_00000000d9d48211994fcfef595e467e.png" alt="Memory 3">
       </div>
 
-
       <div class="photo-box">
-
-        <img
-          src="IMG_20260927_174544.jpg"
-          alt="Memory 4"
-        >
-
+        <img src="IMG_20260927_174544.jpg" alt="Memory 4">
       </div>
 
-
       <div class="photo-box">
-
-        <img
-          src="IMG_20260927_174548.jpg"
-          alt="Memory 5"
-        >
-
+        <img src="IMG_20260927_174548.jpg" alt="Memory 5">
       </div>
 
-
       <div class="photo-box">
-
-        <img
-          src="file_00000000d9d48211994fcfef595e467e.png"
-          alt="Memory 6"
-        >
-
+        <img src="file_00000000d9d48211994fcfef595e467e.png" alt="Memory 6">
       </div>
 
     </div>
 
-
-    <button
-      class="main-btn"
-      onclick="showScreen('letter')"
-    >
+    <button class="main-btn" type="button" onclick="showScreen('letter')">
       Read your letter 💌
     </button>
 
   </section>
 
-
-  <!-- ==================================================
-       LETTER
-  =================================================== -->
+  <!-- LETTER -->
 
   <section id="letter" class="screen">
 
-    <h2>
-      A Little Letter For You 💌
-    </h2>
+    <h2>A Little Letter For You 💌</h2>
 
     <div class="letter">
 
-      <p>
-        Happy Birthday! 🥹💜
-      </p>
+      <p>Happy Birthday! 🥹💜</p>
 
       <p>
         I hope this little surprise makes you smile.
@@ -1004,86 +800,55 @@ p {
 
     </div>
 
-    <button
-      class="main-btn"
-      onclick="showScreen('stickers')"
-    >
+    <button class="main-btn" type="button" onclick="showScreen('stickers')">
       There's more 👀
     </button>
 
   </section>
 
-
-  <!-- ==================================================
-       STICKERS
-  =================================================== -->
+  <!-- STICKERS -->
 
   <section id="stickers" class="screen">
 
-    <h2>
-      Tap the little surprises 💜
-    </h2>
+    <h2>Tap the little surprises 💜</h2>
 
     <div class="sticker-grid">
 
-      <button
-        class="sticker"
-        onclick="stickerClick('camera')"
-      >
+      <button class="sticker" type="button" onclick="stickerClick('camera')">
         📸
         <span>Camera</span>
       </button>
 
-      <button
-        class="sticker"
-        onclick="stickerClick('envelope')"
-      >
+      <button class="sticker" type="button" onclick="stickerClick('envelope')">
         💌
         <span>Envelope</span>
       </button>
 
-      <button
-        class="sticker"
-        onclick="stickerClick('phone')"
-      >
+      <button class="sticker" type="button" onclick="stickerClick('phone')">
         📱
         <span>Phone</span>
       </button>
 
-      <button
-        class="sticker"
-        onclick="stickerClick('flowers')"
-      >
+      <button class="sticker" type="button" onclick="stickerClick('flowers')">
         💐
         <span>Flowers</span>
       </button>
 
     </div>
 
-    <div
-      id="stickerMessage"
-      class="sticker-message"
-    ></div>
+    <div id="stickerMessage" class="sticker-message"></div>
 
-    <button
-      class="main-btn"
-      onclick="showScreen('video')"
-    >
+    <button class="main-btn" type="button" onclick="showScreen('video')">
       Watch this 🎬
     </button>
 
   </section>
 
-
-  <!-- ==================================================
-       VIDEO
-  =================================================== -->
+  <!-- VIDEO -->
 
   <section id="video" class="screen">
 
-    <h2>
-      A Little Video For You 🎬
-    </h2>
+    <h2>A Little Video For You 🎬</h2>
 
     <div class="video-wrap">
 
@@ -1093,20 +858,11 @@ p {
         playsinline
         preload="metadata"
       >
-
-        <!--
-        Your MP4 file was described as ending in Happy.mp4.
-        If GitHub shows a different exact filename,
-        change only the filename below.
-        -->
-
         <source
           src="POV- you decided a simple Happy.mp4"
           type="video/mp4"
         >
-
         Your browser does not support this video.
-
       </video>
 
     </div>
@@ -1115,53 +871,36 @@ p {
       Your birthday video 🎀
     </p>
 
-    <button
-      class="main-btn"
-      onclick="showScreen('hug')"
-    >
+    <button class="main-btn" type="button" onclick="showScreen('hug')">
       One last thing 🥺
     </button>
 
   </section>
 
-
-  <!-- ==================================================
-       FINAL HUG
-  =================================================== -->
+  <!-- HUG -->
 
   <section id="hug" class="screen">
 
-    <div class="birthday-emoji">
-      🫂
-    </div>
+    <div class="birthday-emoji">🫂</div>
 
-    <h2>
-      A Virtual Hug For You 🫂💜
-    </h2>
-
-
-    <!-- YOUR ACTUAL GIF -->
+    <h2>A Virtual Hug For You 🫂💜</h2>
 
     <img
       src="IMG_ac2a3cf4-09f4-476a-ba98-5f44de90acee.gif"
       alt="A virtual hug"
       class="hug-gif"
+      onerror="this.style.display='none'"
     >
 
-
     <p class="final-text">
-      If I could, I would give you the biggest hug
-      right now. 🥹💜
+      If I could, I would give you the biggest hug right now. 🥹💜
     </p>
 
     <p class="final-text">
       Happy Birthday once again! 🎂✨
     </p>
 
-    <button
-      class="main-btn"
-      onclick="replaySurprise()"
-    >
+    <button class="main-btn" type="button" onclick="replaySurprise()">
       Replay from the beginning 🔄
     </button>
 
@@ -1169,46 +908,34 @@ p {
 
 </div>
 
-
-<!-- ==================================================
-     JAVASCRIPT
-================================================== -->
-
 <script>
-
-const correctPassword = "1234";
-
-let enteredPassword = "";
-
-
 /* =========================
    PASSWORD
 ========================= */
 
-function pressKey(number) {
+const correctPassword = "1234";
+let enteredPassword = "";
 
+function pressKey(number) {
   if (enteredPassword.length >= 4) {
     return;
   }
 
-  enteredPassword += number;
-
+  enteredPassword += String(number);
   updatePasswordDisplay();
 
-  document.getElementById("passwordError").textContent = "";
+  const error = document.getElementById("passwordError");
+
+  if (error) {
+    error.textContent = "";
+  }
 
   if (enteredPassword.length === 4) {
-
-    setTimeout(function() {
-      checkPassword();
-    }, 200);
-
+    checkPassword();
   }
 }
 
-
 function updatePasswordDisplay() {
-
   const boxes = [
     document.getElementById("p1"),
     document.getElementById("p2"),
@@ -1217,51 +944,45 @@ function updatePasswordDisplay() {
   ];
 
   boxes.forEach(function(box, index) {
-
-    if (index < enteredPassword.length) {
-      box.textContent = "•";
-    } else {
-      box.textContent = "";
+    if (box) {
+      box.textContent =
+        index < enteredPassword.length ? "•" : "";
     }
-
   });
-
 }
-
 
 function clearPassword() {
-
-  enteredPassword =
-    enteredPassword.slice(0, -1);
-
+  enteredPassword = enteredPassword.slice(0, -1);
   updatePasswordDisplay();
 
-  document.getElementById("passwordError").textContent = "";
+  const error = document.getElementById("passwordError");
 
+  if (error) {
+    error.textContent = "";
+  }
 }
 
-
 function checkPassword() {
-
   if (enteredPassword === correctPassword) {
-
-    document.getElementById("passwordError").textContent = "";
-
-    showScreen("question");
-
-  } else {
-
-    document.getElementById("passwordError").textContent =
-      "Wrong password 😭 Try again!";
 
     enteredPassword = "";
 
     updatePasswordDisplay();
 
+    showScreen("question");
+
+  } else {
+
+    const error = document.getElementById("passwordError");
+
+    if (error) {
+      error.textContent = "Wrong password 😭 Try again!";
+    }
+
+    enteredPassword = "";
+    updatePasswordDisplay();
   }
-
 }
-
 
 /* =========================
    SCREEN CONTROL
@@ -1282,11 +1003,10 @@ function showScreen(screenId) {
   }
 
   window.scrollTo(0, 0);
-  }
-
+}
 
 /* =========================
-   YES
+   YES / NO
 ========================= */
 
 function answerYes() {
@@ -1294,34 +1014,27 @@ function answerYes() {
   const message =
     document.getElementById("questionMessage");
 
-  message.textContent =
-    "YAYYY! 🥹💜 Opening your surprise...";
-
-  createHearts();
+  if (message) {
+    message.textContent =
+      "YAYYY! 🥹💜 Your surprise is waiting!";
+  }
 
   setTimeout(function() {
-
     showScreen("birthday");
-
   }, 700);
-
 }
-
-
-/* =========================
-   NO
-========================= */
 
 function answerNo() {
 
   const message =
     document.getElementById("questionMessage");
 
-  message.textContent =
-    "Okay 😤 I'll respect that... I'll be here whenever you're ready 🥺💜";
+  if (message) {
+    message.textContent =
+      "Okay 🥺 I'll stay right here. You can say YES whenever you're ready 💜";
+  }
 
 }
-
 
 /* =========================
    STICKERS
@@ -1333,67 +1046,17 @@ function stickerClick(type) {
     document.getElementById("stickerMessage");
 
   const messages = {
-
-    camera:
-      "📸 Every beautiful moment deserves to be remembered.",
-
-    envelope:
-      "💌 A little secret message: you're very special.",
-
-    phone:
-      "📱 Imagine this arriving at 12am.",
-
-    flowers:
-      "💐 These flowers are for you because you deserve something beautiful."
-
+    camera: "📸 Saving this beautiful memory forever!",
+    envelope: "💌 A tiny secret message just for you!",
+    phone: "📱 If this phone could talk, it would say HAPPY BIRTHDAY!",
+    flowers: "💐 These flowers are for you!"
   };
 
-  message.textContent =
-    messages[type] || "💜 Surprise!";
-
-  createHearts();
-
-}
-
-
-/* =========================
-   FLOATING HEARTS
-========================= */
-
-function createHearts() {
-
-  for (let i = 0; i < 5; i++) {
-
-    const heart =
-      document.createElement("div");
-
-    heart.className =
-      "floating-heart";
-
-    heart.textContent =
-      Math.random() > .5 ? "💜" : "💗";
-
-    heart.style.left =
-      (20 + Math.random() * 60) + "%";
-
-    heart.style.bottom =
-      "20px";
-
-    heart.style.animationDelay =
-      (Math.random() * .5) + "s";
-
-    document.body.appendChild(heart);
-
-    setTimeout(function() {
-
-      heart.remove();
-
-    }, 3500);
-
+  if (message) {
+    message.textContent =
+      messages[type] || "A little surprise for you 💜";
   }
-
 }
-
 
 /* =========================
    REPLAY
@@ -1401,31 +1064,25 @@ function createHearts() {
 
 function replaySurprise() {
 
-  const video =
-    document.getElementById("birthdayVideo");
-
-  if (video) {
-
-    video.pause();
-
-    video.currentTime = 0;
-
-  }
-
   enteredPassword = "";
-
   updatePasswordDisplay();
 
-  document.getElementById("passwordError").textContent = "";
+  const questionMessage =
+    document.getElementById("questionMessage");
 
-  document.getElementById("questionMessage").textContent = "";
+  const stickerMessage =
+    document.getElementById("stickerMessage");
 
-  document.getElementById("stickerMessage").textContent = "";
+  if (questionMessage) {
+    questionMessage.textContent = "";
+  }
+
+  if (stickerMessage) {
+    stickerMessage.textContent = "";
+  }
 
   showScreen("passcode");
-
 }
-
 
 /* =========================
    KEYBOARD
@@ -1434,32 +1091,24 @@ function replaySurprise() {
 document.addEventListener("keydown", function(event) {
 
   if (/^[0-9]$/.test(event.key)) {
-
     pressKey(event.key);
-
   }
 
   if (event.key === "Backspace") {
-
     clearPassword();
-
   }
 
   if (event.key === "Enter") {
-
     checkPassword();
-
   }
 
 });
-
 
 /* =========================
    START
 ========================= */
 
 updatePasswordDisplay();
-
 </script>
 
 </body>
