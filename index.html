@@ -1269,20 +1269,20 @@ function checkPassword() {
 
 function showScreen(screenId) {
 
-  const screens =
-    document.querySelectorAll(".screen");
+  const screens = document.querySelectorAll(".screen");
 
   screens.forEach(function(screen) {
+    screen.classList.remove("active");
+  });
 
+  const selected = document.getElementById(screenId);
+
+  if (selected) {
     selected.classList.add("active");
-
   }
 
   window.scrollTo(0, 0);
-
-  createHearts();
-
-}
+  }
 
 
 /* =========================
