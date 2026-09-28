@@ -1077,5 +1077,241 @@ function showScreen(id){
     if(target){
 
         target.classList.add("active");
+window.scrollTo(0,0);
 
-        windo
+    }
+
+}
+
+
+/* =====================================================
+   PASSWORD KEYPAD
+===================================================== */
+
+function press(number){
+
+    if(enteredPassword.length >= 4){
+        return;
+    }
+
+
+    enteredPassword += number;
+
+    updatePin();
+
+    document
+        .getElementById("passwordError")
+        .innerText = "";
+
+
+    if(enteredPassword.length === 4){
+
+        setTimeout(function(){
+
+            checkPassword();
+
+        },200);
+
+    }
+
+}
+
+
+/* =====================================================
+   UPDATE PIN
+===================================================== */
+
+function updatePin(){
+
+    const boxes = [
+
+        document.getElementById("pin1"),
+        document.getElementById("pin2"),
+        document.getElementById("pin3"),
+        document.getElementById("pin4")
+
+    ];
+
+
+    boxes.forEach(function(box,index){
+
+        if(index < enteredPassword.length){
+
+            box.innerText = "•";
+
+        }else{
+
+            box.innerText = "";
+
+        }
+
+    });
+
+}
+
+
+/* =====================================================
+   CLEAR PASSWORD
+===================================================== */
+
+function clearPassword(){
+
+    enteredPassword = "";
+
+    updatePin();
+
+    document
+        .getElementById("passwordError")
+        .innerText = "";
+
+}
+
+
+/* =====================================================
+   CHECK PASSWORD
+===================================================== */
+
+function checkPassword(){
+
+    if(enteredPassword === correctPassword){
+
+        document
+            .getElementById("passwordError")
+            .innerText = "";
+
+        showScreen("question");
+
+    }else{
+
+        document
+            .getElementById("passwordError")
+            .innerText =
+            "Wrong password 😭 Try again!";
+
+        enteredPassword = "";
+
+        updatePin();
+
+    }
+
+}
+
+
+/* =====================================================
+   YES
+===================================================== */
+
+function answerYes(){
+
+    const message =
+        document.getElementById("answerMessage");
+
+
+    message.innerText =
+        "YAYYY! 🥹💗 Opening your surprise...";
+
+
+    setTimeout(function(){
+
+        showScreen("birthday");
+
+    },700);
+
+}
+
+
+/* =====================================================
+   NO
+===================================================== */
+
+function answerNo(){
+
+    document
+        .getElementById("answerMessage")
+        .innerText =
+        "Okay 😤 I'll respect that... I'll be here whenever you're ready 🥺💗";
+
+}
+
+
+/* =====================================================
+   POPUP
+===================================================== */
+
+function openPopup(title,text){
+
+    document
+        .getElementById("popupTitle")
+        .innerText = title;
+
+
+    document
+        .getElementById("popupText")
+        .innerText = text;
+
+
+    document
+        .getElementById("popup")
+        .classList.add("show");
+
+}
+
+
+function closePopup(){
+
+    document
+        .getElementById("popup")
+        .classList.remove("show");
+
+}
+
+
+/* =====================================================
+   REPLAY
+===================================================== */
+
+function replay(){
+
+    const video =
+        document.querySelector("#video video");
+
+
+    if(video){
+
+        video.pause();
+
+        video.currentTime = 0;
+
+    }
+
+
+    closePopup();
+
+    enteredPassword = "";
+
+    updatePin();
+
+
+    document
+        .getElementById("passwordError")
+        .innerText = "";
+
+
+    document
+        .getElementById("answerMessage")
+        .innerText = "";
+
+
+    showScreen("passcode");
+
+}
+
+</script>
+
+
+</div>
+
+</body>
+</html>
+
+        
